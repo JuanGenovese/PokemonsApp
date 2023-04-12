@@ -106,8 +106,12 @@ server.get("/pokemons", async ( req , res) => {
 server.post("/pokemons", ( req , res ) => {
   try {
     
+    const {name , imagen , vida , ataque , defensa , velocidad , altura , peso, tipo } = req.body;
 
-
+    Pokemon.create({name, imagen, vida, ataque, defensa, velocidad, altura, peso, tipo})
+    .then(pokemon => {
+      res.status(200).send("Pokemón correctamente creado en la DB");
+    })
 
 
   } catch (error) {
