@@ -2,16 +2,17 @@ const { DataTypes } = require('sequelize');
 
 
 module.exports = (sequelize) => {
-  sequelize.define('pokemon', {
-    tipo: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
+  sequelize.define('Type', {
     id: {
-      type: DataTypes.STRING,
+      type: DataTypes.INTEGER,
       allowNull: false,
       primaryKey: true,
       autoIncrement: true
+    },
+    tipo: {
+      type: DataTypes.STRING,
+      allowNull: false,
     }
+
   });
 };
