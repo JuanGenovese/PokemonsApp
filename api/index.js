@@ -4,7 +4,6 @@ const { sequelize } = require('./src/db.js');
 
 sequelize.sync({ 
   force: true,
-  alter: false
 })
 .then(() => {
   server.listen(3001, () => {

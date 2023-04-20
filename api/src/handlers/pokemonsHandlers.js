@@ -1,9 +1,7 @@
-const { Sequelize, Op } = require('sequelize');
 const { 
-    findAllPokemons, 
-    findPokemonsByPK,
-    getPokemonsApi, 
-    getPokemonsApiById, 
+    getAllPokemons,
+    searchPokemonByName,
+    getPokemonById,
     createPokemon
 } = require("../constrollers/pokemonsController");
 
@@ -11,46 +9,14 @@ const {
 
 const getPokemonsHandler = async ( req , res ) => { //funciona correctamente
     try {
-
         const { name } = req.query;
-        let pokemons = [];
-        
+        const results = name ? await searchPokemonByName(name) : await getAllPokemons();
 
-        if(name) {
-  
-            const pokemonsDB = await findAllPokemons({
-                where:Sequelize.where(
-                    Sequelize.fn("lower", Sequelize.col("name")),
-                    {[Op.like]: `%${name.toLowerCase}%`}
-                ),
-                include: Type
-            });
-  
-  
-            const pokemonsAPI = await getPokemonsApi();
-            const pokemonsAPIFiltered = pokemonsAPI.data.results.filter(pokemon => {
-                return pokemon.name.toLowerCase().includes(name.toLowerCase());
-            });
-  
-  
-            pokemons = pokemonsAPIFiltered.concat(pokemonsDB);
-  
-        } else {
-            const pokemonsAPI = await getPokemonsApi();
-            const pokemonDB = await findAllPokemons({ include: Type});
-            pokemons = pokemonsAPI.data.results.concat(pokemonDB);
-  
-        }
-
-        if(pokemons.length === 0) {
-            return res.status(404).send("No se encontraron pokemones con ese nombre");
-        }
-
-        res.status(200).json(pokemons);
+        res.status(200).json(results);
   
     } catch (error) {
   
-      res.status(400).send( error.message )
+        res.status(400).send( error.message )
   
     };
 };
@@ -58,53 +24,34 @@ const getPokemonsHandler = async ( req , res ) => { //funciona correctamente
 
 
 const getPokemonsIdHandler = async ( req , res ) => { //funciona correctamente
+    const { idPokemon } = req.params;
+    const source = isNaN( idPokemon ) ? "bdd" : "api";
     try {
-  
-      const { idPokemon } = req.params;
-      let PokemonInd = await findPokemonsByPK( idPokemon, {
-        include: Type,
-      });
-
-  
-      if(!PokemonInd) {
-        const response = await getPokemonsApiById()
-        PokemonInd = {
-            name: response.data.name,
-            image: response.data.sprites.front_default,
-            types: response.data.types.map(type => type.type.name)
-        };
-      } else {
-
-        PokemonInd = {
-            name: PokemonInd.name,
-            image: PokemonInd.image,
-            types: PokemonInd.tipo.map(type => type.name)
-
-        };
-      };
-  
-      res.status(200).json( PokemonInd );
+        const Pokemon = await getPokemonById( idPokemon , source);
+        res.status(200).json( Pokemon );
   
     } catch (error) {
       
-      res.status(400).send( error.message );
+        res.status(400).send( error.message );
 
     };
 };
 
+
+
+
+
 const postPokemonsHandler = async ( req , res ) => { //funciona correctamente
+    const {name , imagen , vida , ataque , defensa , velocidad , altura , peso, tipo } = req.body;
+
     try {
   
-        const {name , imagen , vida , ataque , defensa , velocidad , altura , peso, tipo } = req.body;
-  
-        await createPokemon({name, imagen, vida, ataque, defensa, velocidad, altura, peso, tipo})
-        .then(pokemon => {
-          res.status(200).send("Pokemón correctamente creado en la DB");
-        })
+        const newPokemon = await createPokemon(name, imagen, vida, ataque, defensa, velocidad, altura, peso, tipo);
+        res.status(200).json(newPokemon);
   
   
     } catch (error) {
-  
+
         res.status(400).send( error.message );
   
     }
