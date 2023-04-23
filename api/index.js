@@ -3,7 +3,8 @@ const { sequelize } = require('./src/db.js');
 
 
 sequelize.sync({ 
-  force: true,
+  force: false,
+  alter: true
 })
 .then(() => {
   server.listen(3001, () => {
