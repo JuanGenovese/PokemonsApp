@@ -29,7 +29,28 @@ const createPokemon = async(name , imagen , vida , ataque , defensa , velocidad 
 
 const getAllPokemons = async () => {
     const response = await axios.get("https://pokeapi.co/api/v2/pokemon?limit=60");
-    const pokemonsAPI = response.data.results
+    const api = response.data.results
+    const pokemonsInfo = api.map( async (element) => {
+        const response = await axios.get(element.url)
+        const pokemon = response.data
+        return{
+            id:pokemon.id,
+            name:pokemon.name,
+            imagen:pokemon.sprites.other.home.front_default,
+            vida:pokemon.stats[0].base_stat || "No disponible",
+            ataque:pokemon.stats[1].base_stat || "No disponible",
+            defensa:pokemon.stats[2].base_stat || "No disponible",
+            velocidad:pokemon.stats[5].base_stat || "No disponible",
+            altura:pokemon.height || null,
+            peso:pokemon.weight || null,
+            tipo:pokemon.types.map(type => type.type.name),
+            create: false
+        };
+    });
+
+    const pokemonsAPI = await Promise.all(pokemonsInfo);
+
+
     const pokemonDB = await Pokemon.findAll({ include: Type});
     return [...pokemonsAPI, ...pokemonDB]
 };
@@ -43,8 +64,30 @@ const searchPokemonByName = async (name) => {
         ),
         include: Type
     });
+
+
     const response = await axios.get("https://pokeapi.co/api/v2/pokemon?limit=60");
-    const pokemonsAPI = response.data.results;
+    const api = response.data.results;
+    const pokemonsInfo = api.map( async (element) => {
+        const response = await axios.get(element.url)
+        const pokemon = response.data
+        return{
+            id:pokemon.id,
+            name:pokemon.name,
+            imagen:pokemon.sprites.other.home.front_default,
+            vida:pokemon.stats[0].base_stat || "No disponible",
+            ataque:pokemon.stats[1].base_stat || "No disponible",
+            defensa:pokemon.stats[2].base_stat || "No disponible",
+            velocidad:pokemon.stats[5].base_stat || "No disponible",
+            altura:pokemon.height || null,
+            peso:pokemon.weight || null,
+            tipo:pokemon.types.map(type => type.type.name),
+            create: false
+        };
+    });
+
+    const pokemonsAPI = await Promise.all(pokemonsInfo)
+
     const pokemonsAPIFiltered = pokemonsAPI.filter(
         pokemon => {
             return pokemon.name.toLowerCase().includes(name.toLowerCase());

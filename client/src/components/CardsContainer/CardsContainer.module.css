@@ -1,0 +1,21 @@
+.container {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    grid-gap: 20px;
+    justify-content: space-around;
+    align-items: center;
+    max-width: 100%;
+    padding: 0 20px;
+    border: 1px solid black;  
+}
+
+Link:link{
+    text-decoration: none;
+}
+  
+  @media (max-width: 768px) {
+    .container {
+      grid-template-columns: repeat(2, 1fr);
+      height: 240px;
+    }
+  }
