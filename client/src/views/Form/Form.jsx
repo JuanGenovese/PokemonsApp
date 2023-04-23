@@ -3,27 +3,45 @@ import { useState } from "react";
 
 const Form = () => {
     const [ form, setForm ]= useState({
-        nombre:"",
-        numeros:"",
-        imagen:""
+        nombre: "",
+        vida: "",
+        ataque: "",
+        defensa: "",
+        velocidad: "",
+        altura: "",
+        peso: "",
+        imagen: ""
     });
 
     const [errors, setErrors] = useState({
-        nombre:"",
-        numeros:"",
-        imagen:""
+        nombre: "",
+        vida: "",
+        ataque: "",
+        defensa: "",
+        velocidad: "",
+        altura: "",
+        peso: "",
+        imagen: "",
     });
+
+
 
     const changeHandler = (event) => {
         const property = event.target.name
         const value = event.target.value
 
-        property === "nombre"
-            ? validateNombre({...form, [property]:value}) 
-            : validate({...form, [property]:value})
+        if(property === "nombre"){
+            validateNombre({...form, [property]:value})
+        } else if ( property === "imagen" ){
+            validateImagen({...form, [property]:value})
+        } else  {
+            validate(value, property)
+        }
 
         setForm({...form, [property]:value})
     }
+
+
 
     const validateNombre = (form) => {
         if(/^[a-zA-Z]+$/.test(form.nombre)){
@@ -38,28 +56,27 @@ const Form = () => {
     };
 
 
-    const validate = (form) => {
-        if(form.vida < 1){
-            setErrors({...errors, numeros:"Debe ser mayor que 0"})
+
+    const validate = (value, name) => {
+        if(value <= 0){
+            setErrors({...errors, [name]:"Debe ser mayor que 0"})
         }else{
-            setErrors({...errors, nombre:"El nombre solo puede estar compuesto por letras"})
+            setErrors({...errors, [name]:""})
         }
-        if(form.nombre==="") setErrors({...errors, email: "Porfavor, elija un nombre"})
 
     };
 
 
-    //const changeHandler = (event) => {
-    //    const property = event.target.name
-    //    const value = event.target.value
-    //
-    //    validate({...form, [property]:value})
-    //
-    //    setForm({...form, [property]:value})
-    //};
 
+    const validateImagen = (form) => {
+        const regex = /(https?:\/\/.*\.jpg)/i;
+        if(regex.test(form.imagen)) {
+            setErrors({...errors, imagen: ""})
+        } else {
+            setErrors({...errors, imagen: "Debe ser una URL que termine en '.jpg'"})
+        }
+    }
 
-   
     const submitHandler = (event) => {
         event.preventDefault()
     //  const response = axios.post("http://localhost:3001/pokemons", form)
@@ -67,6 +84,27 @@ const Form = () => {
     //  .catch(err => alert(err))
     }
 
+
+    const allFieldsValid = () => {
+        return (
+          form.nombre !== "" &&
+          form.vida !== "" &&
+          form.ataque !== "" &&
+          form.defensa !== "" &&
+          form.velocidad !== "" &&
+          form.altura !== "" &&
+          form.peso !== "" &&
+          form.imagen !== "" &&
+          errors.nombre === "" &&
+          errors.vida === "" &&
+          errors.ataque === "" &&
+          errors.defensa === "" &&
+          errors.velocidad === "" &&
+          errors.altura === "" &&
+          errors.peso === "" && 
+          errors.imagen === ""
+        )
+    }
 
     return(
         <div>
@@ -83,34 +121,44 @@ const Form = () => {
                 <div>
                     <label>Vida </label>
                     <input type="number" value={form.vida} onChange={changeHandler} name="vida"/>
+                    {errors.vida && <span>{errors.vida}</span>}
                 </div>
     
                 <div>
                     <label>Ataque </label>
                     <input type="number" value={form.ataque} onChange={changeHandler} name="ataque"/>
+                    {errors.ataque && <span>{errors.ataque}</span>}
                 </div>
                 <div>
                     <label>Defensa </label>
                     <input type="number" value={form.defensa} onChange={changeHandler} name="defensa"/>
+                    {errors.defensa && <span>{errors.defensa}</span>}
                 </div>
                 <div>
                     <label>Velocidad </label>
                     <input type="number" value={form.velocidad} onChange={changeHandler} name="velocidad"/>
+                    {errors.velocidad && <span>{errors.velocidad}</span>}
                 </div>
                 <div>
                     <label>Altura </label>
                     <input type="number"  value={form.altura} onChange={changeHandler} name="altura"/>
+                    {errors.altura && <span>{errors.altura}</span>}
                 </div>
                 <div>
                     <label>Peso </label>
                     <input type="number"  value={form.peso} onChange={changeHandler} name="peso"/>
+                    {errors.peso && <span>{errors.peso}</span>}
                 </div>
                 <div>
                     <label>Imagen </label>
                     <input type="text" value={form.imagen} onChange={changeHandler} name="imagen"/>
+                    {errors.imagen && <span>{errors.imagen}</span>}
                 </div>
-                {errors.nombre==="" && errors.vida==="" && errors.ataque==="" && errors.defensa==="" &&errors.velocidad==="" && errors.altura==="" && errors.peso==="" && errors.imagen==="" ?
-                (<button type="submit" onClick={submitHandler}>SUBMIT</button>) : null}
+                {allFieldsValid() && (
+                    <button type="submit" onClick={submitHandler}>
+                        SUBMIT
+                    </button>)
+                }
             </form>
         </div>
     )
