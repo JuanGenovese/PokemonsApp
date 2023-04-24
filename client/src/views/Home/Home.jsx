@@ -3,6 +3,7 @@ import CardsContainer from "../../components/CardsContainer/CardsContainer";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getPokemons, getTypes} from "../../redux/actions";
+import style from "./Home.module.css";
 
 
 
@@ -10,7 +11,6 @@ const Home = () => {
     const dispatch = useDispatch();
 
     const tipos = useSelector(state => state.tipos)
-    console.log(tipos);
 
     useEffect(() => {
         dispatch(getPokemons())

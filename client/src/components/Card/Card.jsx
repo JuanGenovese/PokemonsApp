@@ -4,7 +4,7 @@ const Card = (props) => {
     return(
         <div className={style.card}>
             <img alt="imagen ilustrativa del pokemon" src={props.imagen}/>
-            <h6>{props.name.toUpperCase()}</h6>
+            <h6>{props.nombre.toUpperCase()}</h6>
             <p>Tipo: {props.tipo}</p>
         </div>
     )

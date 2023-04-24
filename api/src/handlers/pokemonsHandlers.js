@@ -42,16 +42,16 @@ const getPokemonsIdHandler = async ( req , res ) => { //funciona correctamente
 
 
 const postPokemonsHandler = async ( req , res ) => { //funciona correctamente
-    const {name , imagen , vida , ataque , defensa , velocidad , altura , peso, tipo } = req.body;
+    const {nombre , imagen , vida , ataque , defensa , velocidad , altura , peso, tipo } = req.body;
 
     try {
   
-        const newPokemon = await createPokemon(name, imagen, vida, ataque, defensa, velocidad, altura, peso, tipo);
-        res.status(200).json(newPokemon); // res.status(200).json("creado exitosamente")
+       await createPokemon(nombre, imagen, vida, ataque, defensa, velocidad, altura, peso, tipo);
+        res.status(200).json("creado exitosamente")
   
   
     } catch (error) {
-
+        console.log(error)
         res.status(400).send( error.message );
   
     }

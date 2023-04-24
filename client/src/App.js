@@ -6,8 +6,8 @@ function App() {
   return (
     <div className="App">
       <Route exact path="/" component={Landing}/>
-      <Route path="/home" render={() => <Home/>}/>
-      <Route exact path="/detail" component={Detail}/>
+      <Route path="/home" component={Home}/>
+      <Route path="/home/:id" component={Detail}/>
       <Route exact path="/create" component={Form}/>
     </div>
   );

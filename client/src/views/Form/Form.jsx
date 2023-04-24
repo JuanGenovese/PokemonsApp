@@ -1,7 +1,13 @@
 import { Link } from "react-router-dom";
 import { useState } from "react";
+import axios from "axios";
+import { useSelector } from "react-redux";
+import style from "./Form.module.css";
 
 const Form = () => {
+
+    const tipos = useSelector(state => state.tipos);
+
     const [ form, setForm ]= useState({
         nombre: "",
         vida: "",
@@ -10,7 +16,8 @@ const Form = () => {
         velocidad: "",
         altura: "",
         peso: "",
-        imagen: ""
+        imagen: "",
+        tipo:[]
     });
 
     const [errors, setErrors] = useState({
@@ -22,8 +29,10 @@ const Form = () => {
         altura: "",
         peso: "",
         imagen: "",
+        tipo:[]
     });
 
+    const [checkbox, setCheckbox] = useState(false);
 
 
     const changeHandler = (event) => {
@@ -39,7 +48,7 @@ const Form = () => {
         }
 
         setForm({...form, [property]:value})
-    }
+    };
 
 
 
@@ -51,7 +60,7 @@ const Form = () => {
         }
 
         if(form.nombre==="") {
-            setErrors({...errors, nombre: "Porfavor, elija un nombre"})
+            setErrors({...errors, nombre: "Por favor ingrese un nombre"})
         }
     };
 
@@ -75,15 +84,25 @@ const Form = () => {
         } else {
             setErrors({...errors, imagen: "Debe ser una URL que termine en '.jpg'"})
         }
+    };
+
+
+    const checkboxHandler = (event) => {
+        setCheckbox(event.target.checked);
     }
+
 
     const submitHandler = (event) => {
         event.preventDefault()
-    //  const response = axios.post("http://localhost:3001/pokemons", form)
-    //  .then(res => alert(res))
-    //  .catch(err => alert(err))
-    }
-
+        if(checkbox) {
+            const response = axios.post("http://localhost:3001/pokemons", form)
+            .then(alert("Pokemon creado correctamente"))
+            .catch(err => alert(err))
+        } else {
+            alert("Seleccione al menos un tipo de pokemon antes de continuar")
+        }
+        
+    };
 
     const allFieldsValid = () => {
         return (
@@ -104,7 +123,7 @@ const Form = () => {
           errors.peso === "" && 
           errors.imagen === ""
         )
-    }
+    };
 
     return(
         <div>
@@ -153,6 +172,16 @@ const Form = () => {
                     <label>Imagen </label>
                     <input type="text" value={form.imagen} onChange={changeHandler} name="imagen"/>
                     {errors.imagen && <span>{errors.imagen}</span>}
+                </div>
+                <div className={style.checkboxContainer}>
+                    {tipos.map(tipo => {
+                        return(
+                            <div>
+                                <label>{tipo.tipo}</label>
+                                <input type="checkbox" value={tipo.tipo} onChange={checkboxHandler}/>
+                            </div>
+                        )
+                    })}
                 </div>
                 {allFieldsValid() && (
                     <button type="submit" onClick={submitHandler}>

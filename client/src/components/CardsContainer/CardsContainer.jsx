@@ -13,7 +13,7 @@ const CardsContainer = () => {
                 <Link to="/detail">
                    <Card
                         imagen={pokemon.imagen}
-                        name={pokemon.name}
+                        nombre={pokemon.nombre}
                         tipo={pokemon.tipo}
                     />
                 </Link>)

@@ -1,7 +1,40 @@
-.mainContainer{
+.mainContainer {
     display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    border-radius: 15px ;
-    border: 1px solid black;
-}
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    background-color: #F5F5F5;
+  }
+  
+  .mainContainer a {
+    margin-right: 10px;
+    font-size: 20px;
+    color: #444444;
+    text-decoration: none;
+  }
+  
+  .mainContainer a:hover {
+    color: #FF3F3F;
+  }
+  
+  .mainContainer input {
+    padding: 5px;
+    border: none;
+    border-radius: 5px;
+    margin-right: 10px;
+    font-size: 16px;
+  }
+  
+  .mainContainer button {
+    padding: 5px 10px;
+    background-color: #FF3F3F;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+  }
+  
+  .mainContainer button:hover {
+    background-color: #E60000;
+  }

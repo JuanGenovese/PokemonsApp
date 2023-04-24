@@ -17,10 +17,8 @@ const axios = require("axios");
 //}
 
 
-const createPokemon = async(name , imagen , vida , ataque , defensa , velocidad , altura , peso, tipo ) => {
-    const newPokemon = await Pokemon.create({name , imagen , vida , ataque , defensa , velocidad , altura , peso, tipo});
-
-    console.log(newPokemon)
+const createPokemon = async(nombre , imagen , vida , ataque , defensa , velocidad , altura , peso, tipo ) => {
+    const newPokemon = await Pokemon.create({nombre , imagen , vida , ataque , defensa , velocidad , altura , peso, tipo});
     await newPokemon.addType(tipo);
     return newPokemon;
 
@@ -35,7 +33,7 @@ const getAllPokemons = async () => {
         const pokemon = response.data
         return{
             id:pokemon.id,
-            name:pokemon.name,
+            nombre:pokemon.name,
             imagen:pokemon.sprites.other.home.front_default,
             vida:pokemon.stats[0].base_stat || "No disponible",
             ataque:pokemon.stats[1].base_stat || "No disponible",
@@ -56,11 +54,11 @@ const getAllPokemons = async () => {
 };
 
 
-const searchPokemonByName = async (name) => {
+const searchPokemonByName = async (nombre) => {
     const pokemonsDB = await Pokemon.findAll({
         where: Sequelize.where(
-            Sequelize.fn("lower", Sequelize.col("name")),
-            {[Op.like]: `%${name.toLowerCase}%`}
+            Sequelize.fn("lower", Sequelize.col("nombre")),
+            {[Op.like]: `%${nombre.toLowerCase}%`}
         ),
         include: Type
     });
@@ -73,7 +71,7 @@ const searchPokemonByName = async (name) => {
         const pokemon = response.data
         return{
             id:pokemon.id,
-            name:pokemon.name,
+            nombre:pokemon.name,
             imagen:pokemon.sprites.other.home.front_default,
             vida:pokemon.stats[0].base_stat || "No disponible",
             ataque:pokemon.stats[1].base_stat || "No disponible",
@@ -90,7 +88,7 @@ const searchPokemonByName = async (name) => {
 
     const pokemonsAPIFiltered = pokemonsAPI.filter(
         pokemon => {
-            return pokemon.name.toLowerCase().includes(name.toLowerCase());
+            return pokemon.nombre.toLowerCase().includes(nombre.toLowerCase());
         }
     );
     return [...pokemonsAPIFiltered, ...pokemonsDB];
