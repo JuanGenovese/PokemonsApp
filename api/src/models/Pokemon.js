@@ -15,7 +15,7 @@ module.exports = (sequelize) => {
       allowNull: false,
     },
     imagen:{
-      type: DataTypes.BLOB,
+      type: DataTypes.STRING,
       allowNull: false
     },
     vida:{
@@ -43,6 +43,7 @@ module.exports = (sequelize) => {
       type: DataTypes.DECIMAL,
       allowNull: false
     }, 
-  });
-
-};
+  },{
+    timestamps: false,
+  }
+  )};

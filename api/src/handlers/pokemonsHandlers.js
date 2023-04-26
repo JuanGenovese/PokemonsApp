@@ -24,10 +24,10 @@ const getPokemonsHandler = async ( req , res ) => { //funciona correctamente
 
 
 const getPokemonsIdHandler = async ( req , res ) => { //funciona correctamente
-    const { idPokemon } = req.params;
-    const source = isNaN( idPokemon ) ? "bdd" : "api";
+    const { id } = req.params;
+    const source = isNaN( id ) ? "bdd" : "api";
     try {
-        const Pokemon = await getPokemonById( idPokemon , source);
+        const Pokemon = await getPokemonById( id , source);
         res.status(200).json( Pokemon );
   
     } catch (error) {

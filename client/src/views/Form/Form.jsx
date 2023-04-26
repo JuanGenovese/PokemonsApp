@@ -7,6 +7,7 @@ import style from "./Form.module.css";
 const Form = () => {
 
     const tipos = useSelector(state => state.tipos);
+    const pokemons = useSelector(state => state.pokemons);
 
     const [ form, setForm ]= useState({
         nombre: "",
@@ -29,10 +30,9 @@ const Form = () => {
         altura: "",
         peso: "",
         imagen: "",
-        tipo:[]
     });
 
-    const [checkbox, setCheckbox] = useState(false);
+    const [checkbox, setCheckbox] = useState("");
 
 
     const changeHandler = (event) => {
@@ -43,13 +43,22 @@ const Form = () => {
             validateNombre({...form, [property]:value})
         } else if ( property === "imagen" ){
             validateImagen({...form, [property]:value})
-        } else  {
+        } else {
             validate(value, property)
         }
 
         setForm({...form, [property]:value})
     };
 
+    const checkboxHandler = (event) => {
+        const tipoSelect = event.target.value; // id = 7
+        if(!event.target.checked){
+            setCheckbox(event.target.checked);
+            setForm({...form, tipo:[...form.tipo, tipoSelect]}) // [2, 7]
+        } else {
+            event.target.disabled = true;
+        }
+    };
 
 
     const validateNombre = (form) => {
@@ -78,31 +87,41 @@ const Form = () => {
 
 
     const validateImagen = (form) => {
-        const regex = /(https?:\/\/.*\.jpg)/i;
-        if(regex.test(form.imagen)) {
+        const regexJPG = /(https?:\/\/.*\.jpg)/i;
+        const regexPGN = /(https?:\/\/.*\.png)/i;
+        if( regexJPG.test(form.imagen) || regexPGN.test(form.imagen) ) {
             setErrors({...errors, imagen: ""})
         } else {
-            setErrors({...errors, imagen: "Debe ser una URL que termine en '.jpg'"})
+            setErrors({...errors, imagen: "Debe ser una URL que termine en '.jpg' o '.png'"})
         }
     };
+    
 
 
-    const checkboxHandler = (event) => {
-        setCheckbox(event.target.checked);
-    }
-
-
-    const submitHandler = (event) => {
-        event.preventDefault()
-        if(checkbox) {
-            const response = axios.post("http://localhost:3001/pokemons", form)
-            .then(alert("Pokemon creado correctamente"))
-            .catch(err => alert(err))
-        } else {
-            alert("Seleccione al menos un tipo de pokemon antes de continuar")
-        }
+    const submitHandler = async (event) => {
+        console.log(form)
         
-    };
+        const yaExiste = pokemons.find(poke => poke.nombre.toLowerCase() === form.nombre.toLocaleLowerCase());
+        if(yaExiste) {
+            return alert("Éste Pokemon ya existe");
+        } 
+        else if(form.tipo === []) {
+            return alert("Seleccione al menos un tipo antes de continuar")
+        } 
+        else {
+            try {
+
+                await axios.post("http://localhost:3001/pokemons", form);
+                alert("Pokemon creado correctamente");
+
+            } catch (error) {
+
+                alert("Hubo un problema al crear el Pokemon, consulte con el desarrollador")
+            }
+        } 
+        
+
+    }
 
     const allFieldsValid = () => {
         return (
@@ -121,7 +140,7 @@ const Form = () => {
           errors.velocidad === "" &&
           errors.altura === "" &&
           errors.peso === "" && 
-          errors.imagen === ""
+          errors.imagen === "" 
         )
     };
 
@@ -178,7 +197,7 @@ const Form = () => {
                         return(
                             <div>
                                 <label>{tipo.tipo}</label>
-                                <input type="checkbox" value={tipo.tipo} onChange={checkboxHandler}/>
+                                <input type="checkbox" value={tipo.id} onChange={checkboxHandler} name="tipo"/>
                             </div>
                         )
                     })}

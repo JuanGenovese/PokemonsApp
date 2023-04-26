@@ -25,6 +25,37 @@ const createPokemon = async(nombre , imagen , vida , ataque , defensa , velocida
 
 }
 
+const getPokemonsDB = async () => {
+    const pokemonDB = await Pokemon.findAll({ include: Type});
+    return pokemonDB
+}
+
+const getPokemonsApi = async () => {
+    const response = await axios.get("https://pokeapi.co/api/v2/pokemon?limit=60");
+    const api = response.data.results
+    const pokemonsInfo = api.map( async (element) => {
+        const response = await axios.get(element.url)
+        const pokemon = response.data
+        return{
+            id:pokemon.id,
+            nombre:pokemon.name,
+            imagen:pokemon.sprites.other.home.front_default,
+            vida:pokemon.stats[0].base_stat || "No disponible",
+            ataque:pokemon.stats[1].base_stat || "No disponible",
+            defensa:pokemon.stats[2].base_stat || "No disponible",
+            velocidad:pokemon.stats[5].base_stat || "No disponible",
+            altura:pokemon.height || null,
+            peso:pokemon.weight || null,
+            tipo:pokemon.types.map(type => type.type.name),
+            create: false
+        };
+    });
+
+    const pokemonsAPI = await Promise.all(pokemonsInfo);
+    return pokemonsAPI;
+
+}
+
 const getAllPokemons = async () => {
     const response = await axios.get("https://pokeapi.co/api/v2/pokemon?limit=60");
     const api = response.data.results
@@ -49,8 +80,32 @@ const getAllPokemons = async () => {
     const pokemonsAPI = await Promise.all(pokemonsInfo);
 
 
-    const pokemonDB = await Pokemon.findAll({ include: Type});
-    return [...pokemonsAPI, ...pokemonDB]
+    const responseDB = await Pokemon.findAll({ 
+        include: {
+            model: Type,
+            attributes: ["tipo"],
+            throught: {attributes: []}
+        }
+    });
+    const pokemonsDB = responseDB.map(poke => {
+        const pokemon = {
+            id:poke.id,
+            nombre:poke.nombre,
+            imagen:poke.imagen,
+            vida:poke.vida,
+            ataque:poke.ataque,
+            defensa:poke.defensa,
+            velocidad:poke.velocidad,
+            altura:poke.altura,
+            peso:poke.peso,
+            tipos:[],
+        }
+        //poke.tipos.map(tipo => pokemon.tipos.push(tipo.nombre));
+        return pokemon;
+    })
+
+
+    return [...pokemonsAPI, ...pokemonsDB]
 };
 
 
@@ -95,14 +150,29 @@ const searchPokemonByName = async (nombre) => {
 }
 
 
-const getPokemonById = async (idPokemon, source) => {
-    const pokemon = 
-        source === "api" 
-        ? (await axios.get(`https://pokeapi.co/api/v2/pokemon/${idPokemon}`)).data
-        : await Pokemon.findByPk( idPokemon, {
+const getPokemonById = async (id, source) => {
+    if(source === "api"){
+        const response = await axios.get(`https://pokeapi.co/api/v2/pokemon/${id}`)
+        const pokemon = response.data
+        return {
+            id:pokemon.id,
+            nombre:pokemon.name,
+            imagen:pokemon.sprites.other.home.front_default,
+            vida:pokemon.stats[0].base_stat || "No disponible",
+            ataque:pokemon.stats[1].base_stat || "No disponible",
+            defensa:pokemon.stats[2].base_stat || "No disponible",
+            velocidad:pokemon.stats[5].base_stat || "No disponible",
+            altura:pokemon.height || null,
+            peso:pokemon.weight || null,
+            tipo:pokemon.types.map(type => type.type.name),
+        }
+    } else { 
+        return await Pokemon.findByPk( id, {
             include: Type,
         });
-    return pokemon;
+    }
+
+  
 }
 
 

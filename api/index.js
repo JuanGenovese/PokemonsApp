@@ -1,13 +1,15 @@
+const { getTypes } = require('./src/constrollers/typeControllers');
 const server = require('./src/app.js');
 const { sequelize } = require('./src/db.js');
 
 
 sequelize.sync({ 
-  force: false,
-  alter: true
+  force: true,
+  alter: false
 })
 .then(() => {
   server.listen(3001, () => {
     console.log('servidor correctamente activo y sincronizado con la DB');
   });
+  getTypes()
 });
