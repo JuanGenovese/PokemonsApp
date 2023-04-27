@@ -100,12 +100,11 @@ const Form = () => {
 
     const submitHandler = async (event) => {
         console.log(form)
-        
         const yaExiste = pokemons.find(poke => poke.nombre.toLowerCase() === form.nombre.toLocaleLowerCase());
         if(yaExiste) {
             return alert("Éste Pokemon ya existe");
         } 
-        else if(form.tipo === []) {
+        else if(form.tipo.length) {
             return alert("Seleccione al menos un tipo antes de continuar")
         } 
         else {
@@ -145,11 +144,11 @@ const Form = () => {
     };
 
     return(
-        <div>
+        <div className={style.formContainer}>
             <Link to="/home">
                 <button>GO HOME!</button>
             </Link>
-            <form onSubmit={submitHandler}>
+            <form className={style.form} onSubmit={submitHandler}>
                 <div>
                     <label>Nombre </label>
                     <input type="text" value={form.nombre} onChange={changeHandler} name="nombre"/>
@@ -192,16 +191,14 @@ const Form = () => {
                     <input type="text" value={form.imagen} onChange={changeHandler} name="imagen"/>
                     {errors.imagen && <span>{errors.imagen}</span>}
                 </div>
-                <div className={style.checkboxContainer}>
-                    {tipos.map(tipo => {
+                    <select defaultValue="unknown" onChange={checkboxHandler}>
+                        <option>Tipos</option>
+                        {tipos.map(tipo => {
                         return(
-                            <div>
-                                <label>{tipo.tipo}</label>
-                                <input type="checkbox" value={tipo.id} onChange={checkboxHandler} name="tipo"/>
-                            </div>
+                            <option value={tipo.id} name="tipo">{tipo.tipo}</option>
                         )
-                    })}
-                </div>
+                        })}
+                    </select>
                 {allFieldsValid() && (
                     <button type="submit" onClick={submitHandler}>
                         SUBMIT
@@ -211,5 +208,4 @@ const Form = () => {
         </div>
     )
 }
-
 export default Form;

@@ -1,4 +1,4 @@
-import { Link} from "react-router-dom";
+import { NavLink} from "react-router-dom";
 import style from "./NavBar.module.css"
 import { useState } from "react";
 import { useDispatch } from "react-redux";
@@ -21,12 +21,12 @@ const NavBar = () => {
 
     return(
         <div className={style.mainContainer}>
-            <Link to="/home"> HOME </Link>
+            <NavLink to="/home" className={style.NavLink}> HOME </NavLink>
             <div>
                 <input type="text" value={input} onChange={changeHandler}/>
                 <button onClick={clickHandler}>BUSCAR</button>
             </div>
-            <Link to="/create">New Pokemon +</Link>
+            <NavLink to="/create" className={style.NavLink}>New Pokemon +</NavLink>
         </div>
     )
 }

@@ -6,13 +6,16 @@
     font-size: 3rem;
     margin-top: 1rem;
     margin-bottom: 1px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: hsla(265, 14%, 47%, 0.801);
+    color: #d4d4d4;
   }
   
   .detailBtn {
     margin-left: 1rem;
     margin-top: 1rem;
     font-size: 1.5rem;
-    background-color: #FF3F3F;
+    background-color: #ae7cff;
     color: white;
     border: none;
     border-radius: 5px;
@@ -30,20 +33,23 @@
     display: flex;
     justify-content: space-around;
     align-items: center;
-    margin: 0rem auto;
+    margin-left: 30px;
     max-width: 900px;
-
   }
   
   .detailImg {
     padding-top: 0px;
     width: 200px;
     height: 200px;
+    display: flex;
   }
   
   .detailInfoContainer {
+    display: flex;
     flex-grow: 1;
     margin: 2rem;
+    justify-content: center;
+
   }
   
   .detailInfo {
@@ -54,5 +60,11 @@
     padding: 1rem;
     border-radius: 5px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-    background-color: white;
+    background-color: hsla(265, 14%, 47%, 0.904);
+
   }
+
+.detailInfoItem{
+  color:#e7e7e7;
+  width: 100px;
+}

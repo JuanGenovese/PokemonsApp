@@ -7,6 +7,7 @@ export const GET_BY_ID = "GET_BY_ID";
 export const FILTER_BY_TYPE = "FILTER_BY_TYPE";
 export const FILTER_BY_ORIGIN = "FILTER_BY_ORIGIN";
 export const SET_ORDER = "SET_ORDER";
+export const CLEAR_POKEMON = "CLEAR_POKEMON";
 
 
 
@@ -82,4 +83,11 @@ export const setOrder = (setOrder) => {
         console.log(setOrder)
     }   
 };
+
+
+export const clearPokemon = () => {
+    return function (dispatch){
+        dispatch({type: CLEAR_POKEMON, payload: null})
+    }
+}; 
 

@@ -5,7 +5,8 @@ import {
     GET_BY_ID,
     FILTER_BY_TYPE,
     FILTER_BY_ORIGIN,
-    SET_ORDER
+    SET_ORDER,
+    CLEAR_POKEMON
 } from "./actions";
 
 const initialState = {
@@ -34,6 +35,8 @@ const rootReducer = (state = initialState, action) => {
         case GET_BY_ID:
             return {...state, pokemonId:action.payload}
 
+        case CLEAR_POKEMON:    
+            return {...state, pokemonId:action.payload}
         case FILTER_BY_TYPE: 
                 return {...state, filtroPorTipo: action.payload}
 

@@ -1,14 +1,14 @@
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
+import "./Landing.module.css"
 
 const Landing = () => {
     return(
-        <>
-            <h1>Landing</h1>
-            <Link to="/home">
+        <div className="">
+            <NavLink to="/home">
                 <button> Comencemos... </button>
-            </Link>
+            </NavLink>
            
-        </>
+        </div>
     )
 }
 

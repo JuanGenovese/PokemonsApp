@@ -60,7 +60,7 @@ const CardsContainer = () => {
                 return b.name.localeCompare(a.name);
             }
         } else if(OrdenarPor === "ataque") {
-            if(orden === "des"){
+            if(orden === "asc"){
                 return a.ataque - b.ataque;
             } else {
                 return b.ataque - a.ataque;

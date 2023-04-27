@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getTypes, filterByType, filterByOrigin, setOrder, getPokemons } from "../../redux/actions";
-import "./Filtros.module.css";
+import style from "./Filtros.module.css";
 
 
 const Filtros = () => {
@@ -60,7 +60,7 @@ const Filtros = () => {
                     <option value="database"> MIS POKEMONES </option>
                     <option value="api"> API </option>
                 </select>
-                <select defaultValue={filtro} onChange={handleChange}>
+                <select lassName={style.select} defaultValue={filtro} onChange={handleChange}>
                     <option value="all"> todos </option>
                     {tipos?.map(tipo => {
                         return( 
