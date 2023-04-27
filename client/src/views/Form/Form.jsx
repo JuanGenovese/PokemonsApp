@@ -6,8 +6,10 @@ import style from "./Form.module.css";
 
 const Form = () => {
 
-    const tipos = useSelector(state => state.tipos);
-    const pokemons = useSelector(state => state.pokemons);
+    const tipos = useSelector(state => state.tipos); //array de {id: num, tipo: "tipo"}
+    const pokemons = useSelector(state => state.pokemons); // array de 60 {pokemons}
+
+
 
     const [ form, setForm ]= useState({
         nombre: "",
@@ -32,8 +34,6 @@ const Form = () => {
         imagen: "",
     });
 
-    const [checkbox, setCheckbox] = useState("");
-
 
     const changeHandler = (event) => {
         const property = event.target.name
@@ -50,15 +50,6 @@ const Form = () => {
         setForm({...form, [property]:value})
     };
 
-    const checkboxHandler = (event) => {
-        const tipoSelect = event.target.value; // id = 7
-        if(!event.target.checked){
-            setCheckbox(event.target.checked);
-            setForm({...form, tipo:[...form.tipo, tipoSelect]}) // [2, 7]
-        } else {
-            event.target.disabled = true;
-        }
-    };
 
 
     const validateNombre = (form) => {
@@ -73,19 +64,6 @@ const Form = () => {
         }
     };
 
-
-
-    const validate = (value, name) => {
-        if(value <= 0){
-            setErrors({...errors, [name]:"Debe ser mayor que 0"})
-        }else{
-            setErrors({...errors, [name]:""})
-        }
-
-    };
-
-
-
     const validateImagen = (form) => {
         const regexJPG = /(https?:\/\/.*\.jpg)/i;
         const regexPGN = /(https?:\/\/.*\.png)/i;
@@ -95,19 +73,37 @@ const Form = () => {
             setErrors({...errors, imagen: "Debe ser una URL que termine en '.jpg' o '.png'"})
         }
     };
-    
+
+    const validate = (value, property) => {
+        if(value <= 0){
+            setErrors({...errors, [property]:"Debe ser mayor que 0"})
+        }else{
+            setErrors({...errors, [property]:""})
+        }
+
+    };
+
+
+
+    const selectHandler = (event) => {
+        const value = event.target.value; 
+        const seRepite = form.tipo.find(tipo => tipo === value);
+
+        if(form.tipo.length < 2 && !seRepite ){
+            setForm({...form, tipo:[...form.tipo, (value/1)]})
+        }
+    }
+
 
 
     const submitHandler = async (event) => {
+        event.preventDefault()
         console.log(form)
         const yaExiste = pokemons.find(poke => poke.nombre.toLowerCase() === form.nombre.toLocaleLowerCase());
         if(yaExiste) {
-            return alert("Éste Pokemon ya existe");
-        } 
-        else if(form.tipo.length) {
-            return alert("Seleccione al menos un tipo antes de continuar")
-        } 
-        else {
+            return alert("¡! : Éste Pokemon ya existe");
+
+        } else {
             try {
 
                 await axios.post("http://localhost:3001/pokemons", form);
@@ -121,6 +117,8 @@ const Form = () => {
         
 
     }
+    console.log(form.tipo)
+    console.log(form.tipo.length > 0)
 
     const allFieldsValid = () => {
         return (
@@ -132,6 +130,7 @@ const Form = () => {
           form.altura !== "" &&
           form.peso !== "" &&
           form.imagen !== "" &&
+          form.tipo.length === 2 &&
           errors.nombre === "" &&
           errors.vida === "" &&
           errors.ataque === "" &&
@@ -142,6 +141,8 @@ const Form = () => {
           errors.imagen === "" 
         )
     };
+
+
 
     return(
         <div className={style.formContainer}>
@@ -191,14 +192,22 @@ const Form = () => {
                     <input type="text" value={form.imagen} onChange={changeHandler} name="imagen"/>
                     {errors.imagen && <span>{errors.imagen}</span>}
                 </div>
-                    <select defaultValue="unknown" onChange={checkboxHandler}>
-                        <option>Tipos</option>
-                        {tipos.map(tipo => {
-                        return(
-                            <option value={tipo.id} name="tipo">{tipo.tipo}</option>
-                        )
-                        })}
-                    </select>
+                <select defaultValue="unknown" onChange={selectHandler} className={style.select}>
+                    <option>Tipos</option>
+                    {tipos.map(tipo => {
+                    return(
+                        <option value={tipo.id} name="tipo">{tipo.tipo}</option>
+                    )
+                    })}
+                </select>
+                <select defaultValue="unknown" onChange={selectHandler} className={style.select}>
+                    <option value={19}>Tipos</option>
+                    {tipos.map(tipo => {
+                    return(
+                        <option value={tipo.id} name="tipo">{tipo.tipo}</option>
+                    )
+                    })}
+                </select>
                 {allFieldsValid() && (
                     <button type="submit" onClick={submitHandler}>
                         SUBMIT

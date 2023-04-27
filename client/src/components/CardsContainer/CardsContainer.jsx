@@ -25,8 +25,6 @@ const CardsContainer = () => {
     const filtroPorOrigen = useSelector(state => state.filtroPorOrigen);
     const OrdenarPor = useSelector(state => state.ordenarPor);
     const orden = useSelector(state => state.orden);
-
-    console.log(OrdenarPor);
     
 
 
@@ -49,15 +47,15 @@ const CardsContainer = () => {
         }
     );
 
-    console.log(porTipoyOrigen)
 
 
-    const pokemonesOrdenados = porTipoyOrigen.sort(( a ,b ) => {
-        if (OrdenarPor === "name") {
-            if(orden === "asc"){
-                return a.name.localeCompare(b.name);
+    const pokemonesOrdenados = porTipoyOrigen.sort(( a , b ) => {
+        if (OrdenarPor === "nombre") {
+            if(orden === "Az"){
+                console.log(a.nombre.localeCompare(b.nombre))
+                return a.nombre.localeCompare(b.nombre);
             } else {
-                return b.name.localeCompare(a.name);
+                return b.nombre.localeCompare(a.nombre);
             }
         } else if(OrdenarPor === "ataque") {
             if(orden === "asc"){

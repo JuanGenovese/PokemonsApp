@@ -62,7 +62,6 @@ export const getTypes = () => {
 export const filterByType = (tipo) => {
     return function (dispatch){
         dispatch({type: FILTER_BY_TYPE, payload: tipo})
-        console.log(tipo);
     }
 };
 
@@ -71,7 +70,6 @@ export const filterByType = (tipo) => {
 export const filterByOrigin = (origin) => {
     return function (dispatch){
        dispatch({type: FILTER_BY_ORIGIN, payload: origin}) // value: "api" || "database" || "all"
-       console.log(origin)
     }
 };
 
@@ -80,7 +78,6 @@ export const filterByOrigin = (origin) => {
 export const setOrder = (setOrder) => {
     return function (dispatch) {
         dispatch({type: SET_ORDER, payload: setOrder})
-        console.log(setOrder)
     }   
 };
 

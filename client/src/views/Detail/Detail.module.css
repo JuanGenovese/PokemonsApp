@@ -68,3 +68,8 @@
   color:#e7e7e7;
   width: 100px;
 }
+
+.loading{
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: rgb(37, 37, 37);
+}

@@ -55,7 +55,7 @@ const Detail = () => {
                         </div>
                     </div> 
                 </>) 
-                : (<h3>Loading</h3>)
+                : (<h1 className={style.loading}>Loading...</h1>)
             } 
         </div>
     )    

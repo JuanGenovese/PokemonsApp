@@ -24,7 +24,6 @@ const Filtros = () => {
     const handleOrigin = (event) => {
         const origin = event.target.value;
         dispatch(filterByOrigin(origin));
-        console.log(origin)
     };
 
     const handleOrder = (event) => {
@@ -34,7 +33,6 @@ const Filtros = () => {
         if (value === 'all') {
             dispatch(setOrder({ ordenarPor: null, orden: null }));
             dispatch(getPokemons());
-            console.log(value)
 
         } else if (value === "nombre-Az" || value === "nombre-Za"){
             dispatch(setOrder({ ordenarPor: "nombre", orden: orderValue[1]}));
@@ -60,7 +58,7 @@ const Filtros = () => {
                     <option value="database"> MIS POKEMONES </option>
                     <option value="api"> API </option>
                 </select>
-                <select lassName={style.select} defaultValue={filtro} onChange={handleChange}>
+                <select className={style.select} defaultValue={filtro} onChange={handleChange}>
                     <option value="all"> todos </option>
                     {tipos?.map(tipo => {
                         return( 

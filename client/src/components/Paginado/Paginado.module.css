@@ -19,6 +19,7 @@
     color: #333;
     border-radius: 5px;
     transition: all 0.3s ease;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
   
 .paginado li a:hover {

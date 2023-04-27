@@ -11,9 +11,8 @@ import {
 
 const initialState = {
     pokemons: [],
-    pokemonsDB: [],
     pokemonId:[],
-    tipos:[],
+    tipos:[], 
     filtroPorTipo: "all", // fire
     filtroPorOrigen: "all",
     ordenarPor: "all",
