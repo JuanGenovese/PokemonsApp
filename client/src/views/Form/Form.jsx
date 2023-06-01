@@ -9,8 +9,6 @@ const Form = () => {
     const tipos = useSelector(state => state.tipos); //array de {id: num, tipo: "tipo"}
     const pokemons = useSelector(state => state.pokemons); // array de 60 {pokemons}
 
-
-
     const [ form, setForm ]= useState({
         nombre: "",
         vida: "",
@@ -34,7 +32,6 @@ const Form = () => {
         imagen: "",
     });
 
-
     const changeHandler = (event) => {
         const property = event.target.name
         const value = event.target.value
@@ -49,8 +46,6 @@ const Form = () => {
 
         setForm({...form, [property]:value})
     };
-
-
 
     const validateNombre = (form) => {
         if(/^[a-zA-Z]+$/.test(form.nombre)){
@@ -83,22 +78,17 @@ const Form = () => {
 
     };
 
-
-
     const selectHandler = (event) => {
-        const value = event.target.value; 
+        const value = event.target.value; // id
         const seRepite = form.tipo.find(tipo => tipo === value);
 
         if(form.tipo.length < 2 && !seRepite ){
-            setForm({...form, tipo:[...form.tipo, (value/1)]})
+            setForm({...form, tipo:[...form.tipo, (value/1)]}) //
         }
     }
 
-
-
     const submitHandler = async (event) => {
         event.preventDefault()
-        console.log(form)
         const yaExiste = pokemons.find(poke => poke.nombre.toLowerCase() === form.nombre.toLocaleLowerCase());
         if(yaExiste) {
             return alert("¡! : Éste Pokemon ya existe");
@@ -117,8 +107,6 @@ const Form = () => {
         
 
     }
-    console.log(form.tipo)
-    console.log(form.tipo.length > 0)
 
     const allFieldsValid = () => {
         return (
@@ -140,9 +128,7 @@ const Form = () => {
           errors.peso === "" && 
           errors.imagen === "" 
         )
-    };
-
-
+    }
 
     return(
         <div className={style.formContainer}>

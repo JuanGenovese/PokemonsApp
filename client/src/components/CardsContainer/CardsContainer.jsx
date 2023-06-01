@@ -7,7 +7,7 @@ import { Link, NavLink } from "react-router-dom";
 import { useState } from "react";
 
 const CardsContainer = () => {
-    const allPokemons = useSelector(state => state.pokemons);
+    const allPokemons = useSelector(state => state.pokemons);// id, nombre, vida, atque
 
     const [ currentPage, setCurrentPage ] = useState(1);
     const [ pokemonsPorPagina, setPokemonsPorPagina ] = useState(12);
@@ -46,7 +46,6 @@ const CardsContainer = () => {
             }
         }
     );
-
 
 
     const pokemonesOrdenados = porTipoyOrigen.sort(( a , b ) => {

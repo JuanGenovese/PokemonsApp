@@ -13,7 +13,7 @@ const initialState = {
     pokemons: [],
     pokemonId:[],
     tipos:[], 
-    filtroPorTipo: "all", // fire
+    filtroPorTipo: "all", 
     filtroPorOrigen: "all",
     ordenarPor: "all",
     orden: "all"

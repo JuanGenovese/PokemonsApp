@@ -22,11 +22,16 @@ const NavBar = () => {
     return(
         <div className={style.mainContainer}>
             <NavLink to="/home" className={style.NavLink}> HOME </NavLink>
-            <div>
-                <input type="text" value={input} onChange={changeHandler}/>
-                <button onClick={clickHandler}>BUSCAR</button>
-            </div>
-            <NavLink to="/create" className={style.NavLink}>New Pokemon +</NavLink>
+            <form className={style.formBusqueda}>
+                <input 
+                  type="text" 
+                  placeholder="Buscar pokemon..."
+                  value={input} 
+                  onChange={changeHandler}
+                />
+                <button type="button" onClick={clickHandler}>BUSCAR</button>
+            </form>
+            <NavLink to="/create" className={style.NavLink}> New Pokemon +</NavLink>
         </div>
     )
 }

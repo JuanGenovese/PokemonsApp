@@ -1,52 +1,52 @@
 .mainContainer {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px;
-    background-color: #4e4e4e;
-    margin: 0;
-    font-size: 20px;
+  font-family: sans-serif;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  top:0;
+  left: 0;
+  right: 0;
+  background-color: rgb(66, 66, 66);
+  height: 15vh;
 }
- 
+
+.formBusqueda {
+  display: flex;
+  align-items: center;
+  margin: 0;
+}
+
+.formBusqueda input {
+  border: none;
+  width: 600px;
+  height: 30px;
+  border-top-left-radius: 25px;
+  border-bottom-left-radius: 25px;
+  padding-left: 15px;
+  transition: .2s;
+}
+
+.formBusqueda input:focus {
+  transition: .2s;
+  transform: scale(1.01);
+}
+
+.formBusqueda button {
+  border: none;
+  width: 100px;
+  height: 32.5px;
+  border-top-right-radius: 25px;
+  border-bottom-right-radius: 25px;
+}
+
 .NavLink {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  font-size: 100px;
-}
-.mainContainer a {
-  margin-right: 10px;
-  font-size: 0.8rem;
-  color: #d1d1d1;
+  color: #ececec;
+  font-size: x-large;
   text-decoration: none;
-  transition: 0.5s;
+  transition: .3s;
 }
-  
-.mainContainer a:hover {
-  color: #ffffff;
-  transition: 0.5s;
-}
-  
-.mainContainer input {
-  padding: 5px;
-  border: none;
-  border-radius: 5px;
-  margin-right: 10px;
-  font-size: 16px;
-}
-  
-.mainContainer button {
-  padding: 5px 10px;
-  background-color: #4e4e4e;
-  color: rgb(255, 255, 255);
-  border: none;
-  border-radius: 5px;
-  font-size: 16px;
-  cursor: pointer;
-  transition: 0.5s;
-}
-  
-.mainContainer button:hover {
-  transition: 0.5s;
-  background-color: rgb(255, 255, 255);
-  color: #4e4e4e;
-    
+
+.NavLink:hover{
+  transition: .5s;
+  transform: scale(1.2);
 }

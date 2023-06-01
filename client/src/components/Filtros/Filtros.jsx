@@ -19,6 +19,7 @@ const Filtros = () => {
     const handleChange = (event) => { //funciona correctamente
         const tipo = event.target.value;
         dispatch(filterByType(tipo));
+
     };
  
     const handleOrigin = (event) => {
