@@ -23,7 +23,6 @@ const Home = () => {
             <div >
                 <NavBar/>
             </div>
-            
             <Filtros/>
             <CardsContainer/>
         </div>

@@ -3,14 +3,14 @@ import style from "./CardsContainer.module.css";
 import Paginado from "../Paginado/Paginado";
 import { getById } from "../../redux/actions";
 import { useSelector } from "react-redux";
-import { Link, NavLink } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { useState } from "react";
 
 const CardsContainer = () => {
     const allPokemons = useSelector(state => state.pokemons);// id, nombre, vida, atque
 
     const [ currentPage, setCurrentPage ] = useState(1);
-    const [ pokemonsPorPagina, setPokemonsPorPagina ] = useState(12);
+    const [ pokemonsPorPagina ] = useState(12);
 
     const IndexOfLastPokemon = currentPage * pokemonsPorPagina;
     const IndexOfFirstPokemon = IndexOfLastPokemon - pokemonsPorPagina
@@ -76,7 +76,7 @@ const CardsContainer = () => {
                 pokemonsPorPagina={pokemonsPorPagina}
                 allPokemons={allPokemons.length}
                 paginado={paginado}
-            />
+                />
             </div>
             <div className={style.container}>
                 {pokemonesOrdenados.map(pokemon => {

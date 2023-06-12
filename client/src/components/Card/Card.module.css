@@ -1,46 +1,46 @@
 .card {
-    width: 105px;
-    height: 220px;
+    width: 25vh;
+    height: 40vh;
     margin: 15px 0px;
-    box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.3);
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.8);
     border-radius: 20px;
     text-decoration: none;
-    background-color: hsla(270, 16%, 29%, 0.884);
+    background-color: rgb(66, 66, 66);
     transition: 0.5s;
 }
 
 .card:hover{
     transition: 0.5s;
     cursor: pointer;
-    transform: translateY(-10px);
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
-
+    transform: scale(1.1);
 }
   
-.card img {
+.imagen {
     max-width: 100%;
     max-height: 100%;
 }
   
 @media (max-width: 768px) {
     .card {
-      width: calc(33.33% - 20px);
+      transform: scale(1);
     }
 }
 
-h6{
-    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial;
-    max-width: 100%;
-    max-height: 100%;
-    margin: 0 30px;
-    color: rgb(228, 199, 255);
-    
-    
+.dataContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
-p {
-    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial;
-    max-width: 100%;
-    max-height: 100%;
-    color: rgb(228, 199, 255);
+.name{
+    margin: 0;
+    margin-top: 3vh;
+    margin-bottom: 1vh;
+    color: #d3d3d3;
+}
+
+.tipo {
+    text-decoration: none;
+    color: #d3d3d3;
 }
