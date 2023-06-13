@@ -13,9 +13,7 @@ export const CLEAR_POKEMON = "CLEAR_POKEMON";
 
 export const getPokemons = () => {
     return async function(dispatch){
-        const serverData = await axios.get(
-            "pokemons"
-        );
+        const serverData = await axios.get("/pokemons");
         const pokemons = serverData.data;
         dispatch({ type: GET_POKEMONS, payload: pokemons})
     };
@@ -25,9 +23,7 @@ export const getPokemons = () => {
 
 export const getPokemonByName = (input) => {
     return async function(dispatch){
-        const serverData = await axios.get(
-            `pokemons?name=${input}`
-        );
+        const serverData = await axios.get(`/pokemons?name=${input}`);
         const pokemonName = serverData.data;
         dispatch({type: GET_POKEMON_BY_NAME, payload: pokemonName})
     };
@@ -37,9 +33,7 @@ export const getPokemonByName = (input) => {
 
 export const getById = (id) => {
     return async function(dispatch){
-        const serverData = await axios.get(
-            `pokemons/${id}`
-        );
+        const serverData = await axios.get(`/pokemons/${id}`);
         const pokemonId = serverData.data;
         dispatch({type: GET_BY_ID, payload:pokemonId})
     }
@@ -49,9 +43,7 @@ export const getById = (id) => {
 
 export const getTypes = () => {
     return async function(dispatch){
-        const serverData = await axios.get(
-            "types"
-        );
+        const serverData = await axios.get("types");
         const tipos = serverData.data;
         dispatch({type: GET_TYPES, payload: tipos})
     };
