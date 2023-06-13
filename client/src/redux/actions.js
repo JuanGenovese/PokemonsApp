@@ -1,4 +1,6 @@
 import axios from "axios";
+axios.defaults.baseURL = 'https://pokemonsapp-production.up.railway.app';
+//axios.defaults.baseURL = 'http://localhost:3001/';
 
 export const GET_POKEMONS = "GET_POKEMONS";
 export const GET_POKEMON_BY_NAME = "GET_POKEMON_BY_NAME";
