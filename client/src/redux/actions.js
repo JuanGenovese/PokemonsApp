@@ -16,6 +16,7 @@ export const CLEAR_POKEMON = "CLEAR_POKEMON";
 export const getPokemons = () => {
     return async function(dispatch){
         const serverData = await axios.get("https://pokemonsapp-production.up.railway.app/pokemons");
+        console.log(serverData)
         const pokemons = serverData.data;
         dispatch({ type: GET_POKEMONS, payload: pokemons})
     };
