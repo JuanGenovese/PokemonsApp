@@ -1,6 +1,6 @@
 import axios from "axios";
-axios.defaults.baseURL = 'https://pokemonsapp-production.up.railway.app';
-//axios.defaults.baseURL = 'http://localhost:3001/';
+//'https://pokemonsapp-production.up.railway.app';
+//'http://localhost:3001/';
 
 export const GET_POKEMONS = "GET_POKEMONS";
 export const GET_POKEMON_BY_NAME = "GET_POKEMON_BY_NAME";
@@ -15,7 +15,7 @@ export const CLEAR_POKEMON = "CLEAR_POKEMON";
 
 export const getPokemons = () => {
     return async function(dispatch){
-        const serverData = await axios.get("/pokemons");
+        const serverData = await axios.get("https://pokemonsapp-production.up.railway.app/pokemons");
         const pokemons = serverData.data;
         dispatch({ type: GET_POKEMONS, payload: pokemons})
     };
@@ -25,7 +25,7 @@ export const getPokemons = () => {
 
 export const getPokemonByName = (input) => {
     return async function(dispatch){
-        const serverData = await axios.get(`/pokemons?name=${input}`);
+        const serverData = await axios.get(`https://pokemonsapp-production.up.railway.app/pokemons?name=${input}`);
         const pokemonName = serverData.data;
         dispatch({type: GET_POKEMON_BY_NAME, payload: pokemonName})
     };
@@ -35,7 +35,7 @@ export const getPokemonByName = (input) => {
 
 export const getById = (id) => {
     return async function(dispatch){
-        const serverData = await axios.get(`/pokemons/${id}`);
+        const serverData = await axios.get(`https://pokemonsapp-production.up.railway.app/pokemons/${id}`);
         const pokemonId = serverData.data;
         dispatch({type: GET_BY_ID, payload:pokemonId})
     }
@@ -45,7 +45,7 @@ export const getById = (id) => {
 
 export const getTypes = () => {
     return async function(dispatch){
-        const serverData = await axios.get("types");
+        const serverData = await axios.get("https://pokemonsapp-production.up.railway.app/types");
         const tipos = serverData.data;
         dispatch({type: GET_TYPES, payload: tipos})
     };
