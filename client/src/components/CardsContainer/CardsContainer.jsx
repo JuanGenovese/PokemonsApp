@@ -73,28 +73,27 @@ const CardsContainer = () => {
         <div className={style.contenedor}>
             <div className={style.paginadoContainer}>
                 <Paginado
-                pokemonsPorPagina={pokemonsPorPagina}
-                allPokemons={allPokemons.length}
-                paginado={paginado}
+                    pokemonsPorPagina={pokemonsPorPagina}
+                    allPokemons={allPokemons.length}
+                    paginado={paginado}
                 />
             </div>
             <div className={style.container}>
                 {pokemonesOrdenados.map(pokemon => {
-                return (
-                <NavLink to={`/home/${pokemon.id}`} className={style.navLink}>
-                    <div onClick={getById(pokemon.id)}>
-                        <Card
-                        imagen={pokemon.imagen}
-                        nombre={pokemon.nombre}
-                        tipo={pokemon.tipo}
-                        id={pokemon.id}
-                        />
-                    </div>
-                   
-                </NavLink>)
+                    return (
+                        <NavLink to={`/home/${pokemon.id}`} className={style.navLink}>
+                            <div onClick={getById(pokemon.id)}>
+                                <Card
+                                imagen={pokemon.imagen}
+                                nombre={pokemon.nombre}
+                                tipo={pokemon.tipo}
+                                id={pokemon.id}
+                                />
+                            </div>
+                        </NavLink>
+                    )
                 })}
-            </div>
-            
+            </div>  
         </div>
     )
 }
