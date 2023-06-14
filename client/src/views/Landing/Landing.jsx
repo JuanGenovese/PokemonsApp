@@ -12,7 +12,7 @@ const Landing = () => {
             <img src={Pokemon} alt="Title" className={style.Pokemon}/>
             <p className={style.parrafo}>¡Descubre el fascinante mundo de Pokémon en PokemonsApp! Haz clic abajo para comenzar tu aventura como Entrenador Pokémon. ¡Atrapa, entrena y crea tus propios Pokémon ¡Explora ahora!</p>
             <NavLink to="/home">
-                <button className={style.button}> Comencemos... </button>
+                <button className={style.button}> ¡Comencemos! </button>
             </NavLink>
         </div> 
     )
