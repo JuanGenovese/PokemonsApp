@@ -5,6 +5,7 @@ import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { getPokemons, getTypes} from "../../redux/actions";
 import style from "./Home.module.css";
+import Fondo from "../Fondo.mp4";
 
 
 
@@ -20,6 +21,9 @@ const Home = () => {
 
     return(
         <div className={style.NavBar}>
+            <video className={style.Fondo} autoPlay loop muted>
+                <source src={Fondo} type="video/mp4"></source>
+            </video>
             <div >
                 <NavBar/>
             </div>
