@@ -10,9 +10,9 @@ const Landing = () => {
                 <source src={Fondo} type="video/mp4"></source>
             </video>
             <img src={Pokemon} alt="Title" className={style.Pokemon}/>
-            <p className={style.parrafo}>¡Descubre el fascinante mundo de Pokémon en PokemonsApp! Haz clic abajo para comenzar tu aventura como Entrenador Pokémon. ¡Atrapa, entrena y crea tus propios Pokémon ¡Explora ahora!</p>
+            <p className={style.parrafo}>Discover the fascinating world of Pokémon on PokemonsApp! Click below to start your adventure as a Pokémon Trainer. Catch, train, and create your own Pokémon. Explore now!</p>
             <NavLink to="/home">
-                <button className={style.button}> ¡Comencemos! </button>
+                <button className={style.button}>Let's begin!</button>
             </NavLink>
         </div> 
     )

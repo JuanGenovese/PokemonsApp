@@ -28,11 +28,11 @@ const NavBar = () => {
             <form className={style.formBusqueda}>
                 <input 
                   type="text" 
-                  placeholder="Buscar pokemon..."
+                  placeholder="Search pokémon..."
                   value={input} 
                   onChange={changeHandler}
                 />
-                <button type="button" onClick={clickHandler}>BUSCAR</button>
+                <button type="button" onClick={clickHandler}>SEARCH</button>
             </form>
             <NavLink to="/create" className={style.NavLink}> New Pokemon +</NavLink>
         </div>

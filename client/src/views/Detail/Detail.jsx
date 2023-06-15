@@ -32,25 +32,25 @@ const Detail = () => {
                         <img src={pokemon.imagen} className={style.detailImg} alt="."/>
                         <div className={style.detailInfo}>
                             <p className={style.detailInfoItem}>
-                                Vida: {pokemon.vida}
+                                Health: {pokemon.vida}
                             </p>
                             <p className={style.detailInfoItem}>
-                                Ataque: {pokemon.ataque}
+                                Attack: {pokemon.ataque}
                             </p>
                             <p className={style.detailInfoItem}>
-                                Defensa: {pokemon.defensa}
+                                Defense: {pokemon.defensa}
                             </p> 
                             <p className={style.detailInfoItem}>
-                                Velocidad: {pokemon.velocidad}
+                                Speed: {pokemon.velocidad}
                             </p>
                             <p className={style.detailInfoItem}>
-                                Altura: {pokemon.altura}
+                                Height: {pokemon.altura}
                             </p>
                             <p className={style.detailInfoItem}>
-                                Peso: {pokemon.peso}
+                                Weight: {pokemon.peso}
                             </p>
                             <p className={style.detailInfoItem}>
-                                Tipo: {pokemon.tipo}
+                                Type: {pokemon.tipo}
                             </p>
                         </div>
                     </div> 
