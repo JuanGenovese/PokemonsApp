@@ -3,6 +3,7 @@ import { useState } from "react";
 import axios from "axios";
 import { useSelector } from "react-redux";
 import style from "./Form.module.css";
+import NavBarForm from "../../components/NavBarForm/NavBarForm";
 
 const Form = () => {
 
@@ -132,9 +133,7 @@ const Form = () => {
 
     return(
         <div className={style.formContainer}>
-            <Link to="/home">
-                <button>GO HOME!</button>
-            </Link>
+            <NavBarForm/>
             <form className={style.form} onSubmit={submitHandler}>
                 <div>
                     <label>Nombre </label>
