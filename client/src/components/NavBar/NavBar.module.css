@@ -62,3 +62,7 @@
   transition: .3s;
   transform: scale(1.05);
 }
+
+.Pokemon {
+  height: 75px;
+}
