@@ -140,47 +140,47 @@ const Form = () => {
             </video>
             <form className={style.form} onSubmit={submitHandler}>
                 <div>
-                    <input className={style.input} type="text" value={form.nombre} onChange={changeHandler} name="nombre" placeholder="Nombre"/>
+                    <input className={style.input} type="text" value={form.nombre} onChange={changeHandler} name="nombre" placeholder="Name"/>
                     {errors.nombre && <span className={style.span}>{errors.nombre}</span>}
                 </div>
 
                 <div>
-                    <input className={style.input} type="number" value={form.vida} onChange={changeHandler} name="vida" placeholder="Vida"/>
+                    <input className={style.input} type="number" value={form.vida} onChange={changeHandler} name="vida" placeholder="Health"/>
                     {errors.vida && <span className={style.span}>{errors.vida}</span>}
                 </div>
     
                 <div>
-                    <input className={style.input} type="number" value={form.ataque} onChange={changeHandler} name="ataque" placeholder="Ataque"/>
+                    <input className={style.input} type="number" value={form.ataque} onChange={changeHandler} name="ataque" placeholder="Attack"/>
                     {errors.ataque && <span className={style.span}>{errors.ataque}</span>}
                 </div>
 
                 <div>
-                    <input className={style.input} type="number" value={form.defensa} onChange={changeHandler} name="defensa" placeholder="Defensa"/>
+                    <input className={style.input} type="number" value={form.defensa} onChange={changeHandler} name="defensa" placeholder="Defense"/>
                     {errors.defensa && <span className={style.span}>{errors.defensa}</span>}
                 </div>
 
                 <div>
-                    <input className={style.input} type="number" value={form.velocidad} onChange={changeHandler} name="velocidad" placeholder="Velocidad"/>
+                    <input className={style.input} type="number" value={form.velocidad} onChange={changeHandler} name="velocidad" placeholder="Speed"/>
                     {errors.velocidad && <span className={style.span}>{errors.velocidad}</span>}
                 </div>
 
                 <div>
-                    <input className={style.input} type="number"  value={form.altura} onChange={changeHandler} name="altura" placeholder="Altura"/>
+                    <input className={style.input} type="number"  value={form.altura} onChange={changeHandler} name="altura" placeholder="Height"/>
                     {errors.altura && <span className={style.span}>{errors.altura}</span>}
                 </div>
 
                 <div>
-                    <input className={style.input} type="number"  value={form.peso} onChange={changeHandler} name="peso" placeholder="Peso"/>
+                    <input className={style.input} type="number"  value={form.peso} onChange={changeHandler} name="peso" placeholder="Weight"/>
                     {errors.peso && <span className={style.span}>{errors.peso}</span>}
                 </div>
 
                 <div>
-                    <input className={style.input} type="text" value={form.imagen} onChange={changeHandler} name="imagen"placeholder="Imagen URL"/>
+                    <input className={style.input} type="text" value={form.imagen} onChange={changeHandler} name="imagen"placeholder="Image URL"/>
                     {errors.imagen && <span className={style.span}>{errors.imagen}</span>}
                 </div>
                 <div className={style.selectContainer}>
                     <select defaultValue="unknown" onChange={selectHandler} className={style.select}>
-                        <option>Tipo</option>
+                        <option>Type</option>
                         {tipos.map(tipo => {
                         return(
                             <option value={tipo.id} name="tipo">{tipo.tipo}</option>
@@ -188,7 +188,7 @@ const Form = () => {
                         })}
                     </select>
                     <select defaultValue="unknown" onChange={selectHandler} className={style.select}>
-                        <option value={19}>Tipo</option>
+                        <option value={19}>Type</option>
                         {tipos.map(tipo => {
                         return(
                             <option value={tipo.id} name="tipo">{tipo.tipo}</option>

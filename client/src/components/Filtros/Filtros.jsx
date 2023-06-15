@@ -48,19 +48,19 @@ const Filtros = () => {
         <div className={style.filtrosContainer}>
             <form className={style.formFiltros}>
                 <select className={style.select} defaultValue='all' onChange={handleOrder}>
-                    <option value="all"> ORDENAR </option>
+                    <option value="all"> ORDER </option>
                     <option value="nombre-Az">A -z</option>
                     <option value="nombre-Za">Z - a</option>
-                    <option value="ataque-asc">Ataque ▲</option>
-                    <option value="ataque-desc">Ataque ▼</option>
+                    <option value="ataque-asc">Attack ▲</option>
+                    <option value="ataque-desc">Attack ▼</option>
                 </select>
                 <select className={style.select} defaultValue={origen} onChange={handleOrigin}>
-                    <option value="all"> ORIGEN </option>
-                    <option value="database"> MIS POKEMONES </option>
-                    <option value="api"> API </option>
+                    <option value="all"> ORIGIN </option>
+                    <option value="database"> MY POKEMONS </option>
+                    <option value="api"> API POKEMONS</option>
                 </select>
                 <select className={style.select} defaultValue={filtro} onChange={handleChange}>
-                    <option value="all"> TODOS </option>
+                    <option value="all">TYPE</option>
                     {tipos?.map(tipo => {
                         return( 
                         <option value={tipo.tipo}> {tipo.tipo} </option>
