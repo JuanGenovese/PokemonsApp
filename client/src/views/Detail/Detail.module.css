@@ -10,9 +10,13 @@
 
 .contenedor{
   height: 360px;
+  display: flex;
+  flex-direction: column;
 }
 
 .detailTitle {
+  margin: 33%;
+  width: 450px;
   text-align: center;
   font-size: 3rem;
   margin-top: 1rem;
@@ -21,6 +25,8 @@
   background-color: rgba(66, 66, 66, 0.9);
   color: #e7e7e7;
   padding: 1rem;
+  border-radius: 25px;
+  box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.8);
 }
 
 .detailContainer {
