@@ -42,11 +42,11 @@ const getPokemonsIdHandler = async ( req , res ) => { //funciona correctamente
 
 
 const postPokemonsHandler = async ( req , res ) => { //funciona correctamente
-    const {nombre , imagen , vida , ataque , defensa , velocidad , altura ,color, peso, tipo } = req.body;
+    const {nombre , imagen , vida , ataque , defensa , velocidad , altura , peso, tipo } = req.body;
 
     try {
   
-       await createPokemon(nombre, imagen, vida, ataque, defensa, velocidad, altura, color, peso, tipo);
+       await createPokemon(nombre, imagen, vida, ataque, defensa, velocidad, altura, peso, tipo);
         res.status(200).json("creado exitosamente")
   
   
