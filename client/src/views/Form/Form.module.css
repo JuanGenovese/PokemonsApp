@@ -15,8 +15,13 @@
     width: 50%;
     height: 110%;
     padding: 25px;
-    padding-top: 75px;
+    padding-top: 50px;
 
+}
+
+.titleForm {
+    color: aliceblue;
+    margin-bottom: 25px;
 }
 
 .input {

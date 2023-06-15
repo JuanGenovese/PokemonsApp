@@ -139,6 +139,9 @@ const Form = () => {
                 <source src={Fondo} type="video/mp4"></source>
             </video>
             <form className={style.form} onSubmit={submitHandler}>
+                <div className={style.titleForm}>
+                    <h2>Add your new Pokémon!</h2>
+                </div> 
                 <div>
                     <input className={style.input} type="text" value={form.nombre} onChange={changeHandler} name="nombre" placeholder="Name"/>
                     {errors.nombre && <span className={style.span}>{errors.nombre}</span>}
