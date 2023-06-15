@@ -1,8 +1,10 @@
-import { Link } from "react-router-dom";
 import { useState } from "react";
 import axios from "axios";
 import { useSelector } from "react-redux";
 import style from "./Form.module.css";
+import NavBarForm from "../../components/NavBarForm/NavBarForm";
+import Fondo from "../Fondo.mp4";
+import Ash from "./Ash.png"
 
 const Form = () => {
 
@@ -51,7 +53,7 @@ const Form = () => {
         if(/^[a-zA-Z]+$/.test(form.nombre)){
             setErrors({...errors, nombre:""})
         }else{
-            setErrors({...errors, nombre:"El nombre solo puede estar compuesto por letras"})
+            setErrors({...errors, nombre:"!! - El nombre solo puede estar compuesto por letras"})
         }
 
         if(form.nombre==="") {
@@ -132,74 +134,76 @@ const Form = () => {
 
     return(
         <div className={style.formContainer}>
-            <Link to="/home">
-                <button>GO HOME!</button>
-            </Link>
+            <NavBarForm/>
+            <video className={style.Fondo} autoPlay loop muted>
+                <source src={Fondo} type="video/mp4"></source>
+            </video>
             <form className={style.form} onSubmit={submitHandler}>
                 <div>
-                    <label>Nombre </label>
-                    <input type="text" value={form.nombre} onChange={changeHandler} name="nombre"/>
-                    {errors.nombre && <span>{errors.nombre}</span>}
+                    <input className={style.input} type="text" value={form.nombre} onChange={changeHandler} name="nombre" placeholder="Nombre"/>
+                    {errors.nombre && <span className={style.span}>{errors.nombre}</span>}
+                </div>
+
+                <div>
+                    <input className={style.input} type="number" value={form.vida} onChange={changeHandler} name="vida" placeholder="Vida"/>
+                    {errors.vida && <span className={style.span}>{errors.vida}</span>}
                 </div>
     
                 <div>
-                    <label>Vida </label>
-                    <input type="number" value={form.vida} onChange={changeHandler} name="vida"/>
-                    {errors.vida && <span>{errors.vida}</span>}
+                    <input className={style.input} type="number" value={form.ataque} onChange={changeHandler} name="ataque" placeholder="Ataque"/>
+                    {errors.ataque && <span className={style.span}>{errors.ataque}</span>}
                 </div>
-    
+
                 <div>
-                    <label>Ataque </label>
-                    <input type="number" value={form.ataque} onChange={changeHandler} name="ataque"/>
-                    {errors.ataque && <span>{errors.ataque}</span>}
+                    <input className={style.input} type="number" value={form.defensa} onChange={changeHandler} name="defensa" placeholder="Defensa"/>
+                    {errors.defensa && <span className={style.span}>{errors.defensa}</span>}
                 </div>
+
                 <div>
-                    <label>Defensa </label>
-                    <input type="number" value={form.defensa} onChange={changeHandler} name="defensa"/>
-                    {errors.defensa && <span>{errors.defensa}</span>}
+                    <input className={style.input} type="number" value={form.velocidad} onChange={changeHandler} name="velocidad" placeholder="Velocidad"/>
+                    {errors.velocidad && <span className={style.span}>{errors.velocidad}</span>}
                 </div>
+
                 <div>
-                    <label>Velocidad </label>
-                    <input type="number" value={form.velocidad} onChange={changeHandler} name="velocidad"/>
-                    {errors.velocidad && <span>{errors.velocidad}</span>}
+                    <input className={style.input} type="number"  value={form.altura} onChange={changeHandler} name="altura" placeholder="Altura"/>
+                    {errors.altura && <span className={style.span}>{errors.altura}</span>}
                 </div>
+
                 <div>
-                    <label>Altura </label>
-                    <input type="number"  value={form.altura} onChange={changeHandler} name="altura"/>
-                    {errors.altura && <span>{errors.altura}</span>}
+                    <input className={style.input} type="number"  value={form.peso} onChange={changeHandler} name="peso" placeholder="Peso"/>
+                    {errors.peso && <span className={style.span}>{errors.peso}</span>}
                 </div>
+
                 <div>
-                    <label>Peso </label>
-                    <input type="number"  value={form.peso} onChange={changeHandler} name="peso"/>
-                    {errors.peso && <span>{errors.peso}</span>}
+                    <input className={style.input} type="text" value={form.imagen} onChange={changeHandler} name="imagen"placeholder="Imagen URL"/>
+                    {errors.imagen && <span className={style.span}>{errors.imagen}</span>}
                 </div>
-                <div>
-                    <label>Imagen </label>
-                    <input type="text" value={form.imagen} onChange={changeHandler} name="imagen"/>
-                    {errors.imagen && <span>{errors.imagen}</span>}
+                <div className={style.selectContainer}>
+                    <select defaultValue="unknown" onChange={selectHandler} className={style.select}>
+                        <option>Tipo</option>
+                        {tipos.map(tipo => {
+                        return(
+                            <option value={tipo.id} name="tipo">{tipo.tipo}</option>
+                        )
+                        })}
+                    </select>
+                    <select defaultValue="unknown" onChange={selectHandler} className={style.select}>
+                        <option value={19}>Tipo</option>
+                        {tipos.map(tipo => {
+                        return(
+                            <option value={tipo.id} name="tipo">{tipo.tipo}</option>
+                        )
+                        })}
+                    </select>
                 </div>
-                <select defaultValue="unknown" onChange={selectHandler} className={style.select}>
-                    <option>Tipos</option>
-                    {tipos.map(tipo => {
-                    return(
-                        <option value={tipo.id} name="tipo">{tipo.tipo}</option>
-                    )
-                    })}
-                </select>
-                <select defaultValue="unknown" onChange={selectHandler} className={style.select}>
-                    <option value={19}>Tipos</option>
-                    {tipos.map(tipo => {
-                    return(
-                        <option value={tipo.id} name="tipo">{tipo.tipo}</option>
-                    )
-                    })}
-                </select>
+                    
                 {allFieldsValid() && (
-                    <button type="submit" onClick={submitHandler}>
+                    <button className={style.submit} type="submit" onClick={submitHandler}>
                         SUBMIT
                     </button>)
                 }
             </form>
+            <img src={Ash} alt="Ash" className={style.img}/>
         </div>
     )
 }

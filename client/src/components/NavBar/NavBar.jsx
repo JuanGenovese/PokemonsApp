@@ -3,6 +3,7 @@ import style from "./NavBar.module.css"
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { getPokemonByName } from "../../redux/actions";
+import Pokemon from "../../views/Landing/Pokemon.png";
 
 const NavBar = () => {
     const dispatch = useDispatch();
@@ -21,7 +22,9 @@ const NavBar = () => {
 
     return(
         <div className={style.mainContainer}>
-            <NavLink to="/home" className={style.NavLink}> HOME </NavLink>
+            <NavLink to="#" className={style.NavLink}>
+                <img className={style.Pokemon} src={Pokemon} alt="Pokemon" />
+            </NavLink>
             <form className={style.formBusqueda}>
                 <input 
                   type="text" 

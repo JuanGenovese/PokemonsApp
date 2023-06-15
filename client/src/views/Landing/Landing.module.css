@@ -1,0 +1,56 @@
+.container {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    font-family: sans-serif;
+}
+
+.Fondo {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -1;
+}
+
+.Pokemon {
+    top: 0;
+}
+
+.parrafo {
+    margin-top: 2.5rem;
+    font-size: x-large;
+    display: flex;
+    text-align: center;
+    height: fit-content;
+    width: 65%;
+    font-weight: 600;
+    color:rgb(212, 212, 212)
+}
+
+.button {
+    margin-top: 1.5rem;
+    font-size: x-large;
+    font-family: sans-serif;
+    font-weight: 600;
+    width: 275px;
+    height: 42.5px;
+    border-radius: 25px;
+    box-shadow: 4px 5px 8px rgba(0, 0, 0, 0.8);
+    color:rgb(51, 51, 51);
+    transition: 0.1s;
+}
+
+.button:hover{
+    cursor: pointer;
+}
+.button:active {
+    transition: 0.1s;
+    transform: scale(0.9);
+}
+

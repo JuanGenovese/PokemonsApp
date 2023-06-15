@@ -42,8 +42,6 @@
   height: 32.5px;
   border-top-right-radius: 25px;
   border-bottom-right-radius: 25px;
-  
-
 }
 
 .formBusqueda button:active {
@@ -61,4 +59,8 @@
 .NavLink:hover{
   transition: .3s;
   transform: scale(1.05);
+}
+
+.Pokemon {
+  height: 75px;
 }

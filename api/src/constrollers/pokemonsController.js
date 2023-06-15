@@ -17,8 +17,8 @@ const axios = require("axios");
 //}
 
 
-const createPokemon = async(nombre , imagen , vida , ataque , defensa , velocidad , altura , color , peso, tipo ) => {
-    const newPokemon = await Pokemon.create({nombre , imagen , vida , ataque , defensa , velocidad , altura ,color,  peso, tipo});
+const createPokemon = async(nombre , imagen , vida , ataque , defensa , velocidad , altura , peso, tipo ) => {
+    const newPokemon = await Pokemon.create({nombre , imagen , vida , ataque , defensa , velocidad , altura,  peso, tipo});
     await newPokemon.addType(tipo);
     return newPokemon;
 
