@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link, useParams } from "react-router-dom";
 import { getById, clearPokemon } from "../../redux/actions";
 import style from "./Detail.module.css"
+import NavBarDetail from "../../components/NavBarDetail/NavBarDetail";
 
 const Detail = () => {
     const { id } =  useParams();
@@ -17,12 +18,10 @@ const Detail = () => {
 
     return(
         <div className={style.contenedor}>
+            <NavBarDetail/>
             {
                 (pokemon && pokemon.nombre) ?
                 (<>
-                    <Link to="/home">
-                        <button className={style.detailBtn}>GO BACK!</button>
-                    </Link>
                     <h1 className={style.detailTitle}> {pokemon.nombre.toUpperCase()}</h1>
                     <div className={style.detailContainer}>
                         <div className={style.detailImgContainer}>
