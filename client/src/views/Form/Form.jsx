@@ -198,7 +198,7 @@ const Form = () => {
                 </div>
                     
                 {allFieldsValid() && (
-                    <button type="submit" onClick={submitHandler}>
+                    <button className={style.submit} type="submit" onClick={submitHandler}>
                         SUBMIT
                     </button>)
                 }

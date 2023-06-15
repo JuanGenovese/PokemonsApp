@@ -57,6 +57,23 @@
     display: block;
 }
 
+.submit {
+    width: 200px;
+    height: 40px;
+    border-radius: 25px;
+    background-color: rgb(252, 252, 34);
+    font-weight: 600;
+    font-size: large;
+    color: rgb(41, 41, 41);
+    box-shadow: 2px 4px 10px rgba(0, 0, 0, 0.8);
+    transition: 0.3s;
+}
+
+.submit:active {
+    transition: 0.2s;
+    transform: scale(0.9);
+}
+
 .Fondo {
     position: fixed;
     top: 0;
