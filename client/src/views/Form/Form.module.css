@@ -95,3 +95,26 @@
     margin-top: 15vh;
     margin-left: 20vh;
 }
+
+@media screen and (max-width:420px) {
+    .img {
+        display: none;
+    }
+
+    .formContainer{
+        flex-direction: column;
+        width: 100%;
+        align-items: center;
+    }
+
+    .form {
+        width: 80%;
+        margin-top: 25px;
+        margin-right: 50px;
+        margin-left: 50px;
+    }
+
+    .input {
+        width: 250px;
+    }
+}

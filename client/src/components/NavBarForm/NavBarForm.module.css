@@ -30,6 +30,7 @@
 @media screen and (max-width: 420px) {
     .mainContainer {
         height: 80px;
+        width: 100%;
     }
     .NavLink {
         font-size: small;
