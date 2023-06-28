@@ -70,3 +70,35 @@
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   color: rgb(37, 37, 37);
 }
+
+@media screen and (max-width: 420px) {
+  .contenedor{
+    width: 90%;
+    height: 100%;
+    align-items: center;
+  }
+  .detailTitle {
+    transform: scale(0.5);
+    margin-left: 150px;
+  }
+  .detailContainer {
+    width: 70%;
+    flex-direction: column;
+
+  }
+
+  .detailImg {
+    margin-left: 10px;
+    width: 300px;
+  }
+
+  .detailInfo{
+    flex-direction: column;
+    margin-right: 100px;
+    margin-left: 125px;
+    margin-bottom: 50px;
+  }
+  .detailInfoItem {
+    transform: scale(0.9);
+  }
+}
