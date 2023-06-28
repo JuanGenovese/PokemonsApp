@@ -27,3 +27,13 @@
     transform: scale(1.05);
 }
   
+@media screen and (max-width: 420px) {
+    .mainContainer {
+        height: 80px;
+        width: 90%;
+    }
+
+    .NavLink {
+        font-size: small;
+    }
+}
