@@ -20,12 +20,6 @@
     max-width: 100%;
     max-height: 100%;
 }
-  
-@media (max-width: 768px) {
-    .card {
-      transform: scale(1);
-    }
-}
 
 .dataContainer {
     display: flex;
@@ -44,4 +38,24 @@
 .tipo {
     text-decoration: none;
     color: #d3d3d3;
+}
+
+@media (max-width: 768px) {
+    .card {
+      transform: scale(1);
+    }
+}
+
+@media (max-width: 414px) {
+    .card {
+        width: 17vh;
+        height: 28vh;
+    }
+}
+
+@media (max-width: 391px) {
+    .card {
+        width: 23vh;
+        height: 37vh;
+    }
 }

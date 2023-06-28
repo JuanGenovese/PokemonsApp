@@ -54,3 +54,16 @@
     transform: scale(0.9);
 }
 
+
+@media screen and (max-width: 420px) {
+    .Pokemon{
+        transform: scale(0.7);
+    }
+    .button {
+        width: 175px;
+        margin-bottom: 3rem;
+    }
+    .parrafo {
+        margin-top: 0;
+    }
+}
