@@ -22,7 +22,7 @@ const NavBar = () => {
 
     return(
         <div className={style.mainContainer}>
-            <NavLink to="#" className={style.NavLink}>
+            <NavLink to="#" className={style.Hola}>
                 <img className={style.Pokemon} src={Pokemon} alt="Pokemon" />
             </NavLink>
             <form className={style.formBusqueda}>
