@@ -89,6 +89,7 @@ const Form = () => {
         }
     }
 
+
     const submitHandler = async (event) => {
         event.preventDefault()
         const yaExiste = pokemons.find(poke => poke.nombre.toLowerCase() === form.nombre.toLocaleLowerCase());
@@ -97,8 +98,9 @@ const Form = () => {
 
         } else {
             try {
-
-                await axios.post("http://localhost:3001/pokemons", form);
+                //https://pokemonsapp-production.up.railway.app
+                //http://localhost:3001/
+                await axios.post("https://pokemonsapp-production.up.railway.app/pokemons", form);
                 alert("Pokemon creado correctamente");
 
             } catch (error) {
